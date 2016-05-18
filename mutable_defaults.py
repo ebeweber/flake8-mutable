@@ -2,7 +2,7 @@
 import ast
 
 
-__version__ = '1.0.0'
+__version__ = '1.0.3'
 
 
 mutable_types = [
@@ -13,14 +13,14 @@ mutable_types = [
 
 
 class MutableDefaultChecker(object):
-    """Mutable default checker.
+    """Mutable default argument checker.
 
     Flake8 extension that alerts when a mutable type is used
     as an argument's default value.
     """
-    name = 'flake-mutable-defaults'
+    name = 'flake-mutable'
     version = __version__
-    _error_tmpl = '{} - {} is a mutable default'
+    _error_tmpl = '{} - mutable default arg of type {}'
     _code = 'M511'
 
     def __init__(self, tree, filename):
