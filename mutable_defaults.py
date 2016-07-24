@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import ast
+from collections import Iterable
 
 
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 mutable_types = [
@@ -41,4 +42,7 @@ class MutableDefaultChecker(object):
                         )
                         yield node.lineno, 0, error_msg, type(self)
             if 'body' in node._fields:
-                unexplored_nodes.extend(node.body)
+                unexplored_nodes.extend(
+                    node.body if isinstance(node.body, Iterable)
+                    else [node.body]
+                )
