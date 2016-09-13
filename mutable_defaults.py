@@ -28,9 +28,7 @@ class MutableDefaultChecker(object):
         self.tree = tree
 
     def run(self):
-        unexplored_nodes = self.tree.body
-        while unexplored_nodes:
-            node = unexplored_nodes.pop()
+        for node in ast.walk(self.tree):
             if isinstance(node, ast.FunctionDef):
                 for default in node.args.defaults:
                     if any([
@@ -41,8 +39,3 @@ class MutableDefaultChecker(object):
                             self._code, type(default).__name__
                         )
                         yield node.lineno, 0, error_msg, type(self)
-            if 'body' in node._fields:
-                unexplored_nodes.extend(
-                    node.body if isinstance(node.body, Iterable)
-                    else [node.body]
-                )
