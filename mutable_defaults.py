@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import ast
-from collections import Iterable
 
 
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 
 
 mutable_types = [
