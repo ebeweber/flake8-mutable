@@ -19,6 +19,17 @@ from mutable_defaults import MutableDefaultChecker
         1
     ),
     ('def foo(bar=[], baz={}): pass', 2),
+    ('def foo(bar=range(10)): pass', 1),
+    ('def foo(bar=set()): pass', 1),
+    (
+        '\n'.join([
+            'def foo():',
+            '    return True',
+            'def bar(a=foo()):',
+            '    pass',
+        ]),
+        1
+    ),
     ('', 0),
 ], ids=(
     'dict',
@@ -27,6 +38,9 @@ from mutable_defaults import MutableDefaultChecker
     'valid_args_and_kwargs',
     'nested_function',
     'multiple_mutable_defaults',
+    'builtin_callable_with_value',
+    'builtin_callable_without_value',
+    'user_defined_callable',
     'empty_tree',
 ))
 def test_mutable_defaults(code, error_count):

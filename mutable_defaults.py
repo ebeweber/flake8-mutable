@@ -6,6 +6,7 @@ __version__ = '1.0.5'
 
 
 mutable_types = [
+    ast.Call,
     ast.Dict,
     ast.List,
     ast.Set,
