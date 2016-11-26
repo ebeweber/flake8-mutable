@@ -3,7 +3,7 @@ import setuptools
 
 
 setuptools.setup(
-    version='1.0.5',
+    version='1.0.6',
     name='flake8-mutable',
     description='mutable defaults flake8 extension',
     keywords='flake8 mutable arg kwarg',
