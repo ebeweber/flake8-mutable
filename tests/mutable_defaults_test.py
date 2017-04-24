@@ -49,3 +49,53 @@ def test_mutable_defaults(code, error_count):
         len(list(MutableDefaultChecker(tree, 'filename').run())) ==
         error_count
     )
+
+
+@pytest.mark.parametrize('code,location_list', [
+    ('def foo(bar={}): pass', [(1, 12)]),
+    ('def foo(bar=[]): pass', [(1, 12)]),
+    (
+        '\n'.join([
+            'def foo():',
+            '    def bar(a={}):',
+            '        pass',
+            '    pass',
+        ]),
+        [(2, 14)]
+    ),
+    ('def foo(bar=[], baz={}): pass', [(1, 12), (1, 20)]),
+    ('def foo(bar=range(10)): pass', [(1, 12)]),
+    ('def foo(bar=set()): pass', [(1, 12)]),
+    (
+        '\n'.join([
+            'def foo():',
+            '    return True',
+            'def bar(a=foo()):',
+            '    pass',
+        ]),
+        [(3, 10)]
+    ),
+    (
+        '\n'.join([
+            'def foo(bar=[],',
+            '        baz={}):',
+            '    pass',
+        ]),
+        [(1, 12), (2, 12)]
+    ),
+], ids=(
+    'dict',
+    'list',
+    'nested_function',
+    'multiple_mutable_defaults',
+    'builtin_callable_with_value',
+    'builtin_callable_without_value',
+    'user_defined_callable',
+    'multiple_line_function_def',
+))
+def test_mutable_defaults_location(code, location_list):
+    tree = ast.parse(code)
+    assert (
+        location_list ==
+        [(e[0], e[1]) for e in MutableDefaultChecker(tree, 'filename').run()]
+    )

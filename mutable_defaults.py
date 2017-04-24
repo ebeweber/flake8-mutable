@@ -38,4 +38,5 @@ class MutableDefaultChecker(object):
                         error_msg = self._error_tmpl.format(
                             self._code, type(default).__name__
                         )
-                        yield node.lineno, 0, error_msg, type(self)
+                        yield (default.lineno, default.col_offset,
+                               error_msg, type(self))

@@ -13,7 +13,7 @@ Python's default arguments are evaluated at definition as opposed to when the fu
 def fnc(a, b={}):
     pass
 
-foo.py:2:1: M511 - mutable default arg of type Dict
+foo.py:2:14: M511 - mutable default arg of type Dict
 ```
 
 #### Installation
