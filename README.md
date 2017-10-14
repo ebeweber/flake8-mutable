@@ -24,6 +24,10 @@ pip install flake8-mutable
 
 #### Changes
 
+##### [1.2.0] 2017-04-24
+- Report exact location of mutable argument in source code rather than only line number
+- Added support for Python 3.5 and 3.6
+
 ##### [1.1.0] 2016-11-26
 - Callables
 
