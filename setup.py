@@ -29,6 +29,7 @@ setuptools.setup(
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
+        'Framework :: Flake8',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries :: Python Modules',
