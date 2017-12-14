@@ -18,7 +18,7 @@ setuptools.setup(
     ],
     entry_points={
         'flake8.extension': [
-            'M90 = mutable_defaults:MutableDefaultChecker',
+            'M511 = mutable_defaults:MutableDefaultChecker',
         ],
     },
     setup_requires=[
