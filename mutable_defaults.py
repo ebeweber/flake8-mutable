@@ -5,12 +5,12 @@ import ast
 __version__ = '1.2.0'
 
 
-mutable_types = [
+mutable_types = (
     ast.Call,
     ast.Dict,
     ast.List,
     ast.Set,
-]
+)
 
 
 class MutableDefaultChecker(object):
@@ -31,10 +31,7 @@ class MutableDefaultChecker(object):
         for node in ast.walk(self.tree):
             if isinstance(node, ast.FunctionDef):
                 for default in node.args.defaults:
-                    if any([
-                        isinstance(default, mutable_type)
-                        for mutable_type in mutable_types
-                    ]):
+                    if isinstance(default, mutable_types):
                         error_msg = self._error_tmpl.format(
                             self._code, type(default).__name__
                         )
