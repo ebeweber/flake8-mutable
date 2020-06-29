@@ -21,9 +21,6 @@ setuptools.setup(
             'M90 = mutable_defaults:MutableDefaultChecker',
         ],
     },
-    setup_requires=[
-        'pytest-runner',
-    ],
     tests_require=[
         'pytest',
     ],
